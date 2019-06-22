@@ -1,0 +1,57 @@
+                        // var spotify = new Promise(() => {
+                        //     genreList.forEach(type => {
+                        //         spotifyApi.getCategory(type, {
+                        //             country: 'US'
+                        //         })
+                        //         .then((data) => {
+                        //             console.log(data.body);
+                        //             resolve(data.body)
+                        //         })
+                        //         .catch(err => {
+                        //             // console.log("Something went wrong!", err);
+                        //             console.log(JSON.stringify(err))
+                        //             reject(err)
+                        //         })
+                        //     })
+                        // })
+                        // console.log('spotify')
+                        // console.log(spotify)
+
+                        var spotify = () => {
+                            return new Promise(() => {
+                                genreList.forEach(type => {
+                                    spotifyApi.getCategory(type, {
+                                        country: 'US'
+                                    })
+                                    .then((data) => {
+                                        console.log(data.body);
+                                        resolve(data.body)
+                                    })
+                                    .catch(err => {
+                                        // console.log("Something went wrong!", err);
+                                        console.log(JSON.stringify(err))
+                                        reject(err)
+                                    })
+                                })
+                            })
+                        }
+                        console.log('spotify')
+                        console.log(spotify())
+
+                        // let action = genreList.map(genre => {
+                        //     return spotify(genre)
+                        // });
+                        // console.log('action')
+                        // console.log(action)
+
+                        Promise.all([spotify()])
+                        .then(result => {
+                            console.log(237)
+                            console.log(result)
+                            resolve(result)
+                        })
+                        .catch(err => {
+                            console.log(242)
+                            console.log(err)
+                            reject(err)
+                        })
